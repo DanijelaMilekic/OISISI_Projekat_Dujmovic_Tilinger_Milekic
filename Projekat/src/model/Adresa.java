@@ -45,11 +45,11 @@ public class Adresa {
 		return broj + ";" + ulica + ";" + grad;
 	}
 	
-	public static Adresa parseAdresa(String line) {
+	public static Adresa parse(String line) {
 		String[] tokens = line.split(";");
 		return new Adresa(Integer.parseInt(tokens[0]), tokens[1], tokens[2]);
 	}
 	
 	
-
+	
 }

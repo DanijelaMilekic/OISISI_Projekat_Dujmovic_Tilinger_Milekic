@@ -3,10 +3,10 @@ package model;
 import java.util.Date;
 import java.util.List;
 
+import crud.SoftverCrud;
 import util.Formating;
 
-public class Zaposleni {
-	
+public class Zaposleni {	
 //	Id Zaposlenog
 	private final String JMBG;
 	
@@ -25,13 +25,13 @@ public class Zaposleni {
 	private RadnoMesto radnoMesto;
 
 
-	public Zaposleni(String jMBG) {
-		JMBG = jMBG;
+	public Zaposleni(String JMBG) {
+		this.JMBG = JMBG;
 	}
 	
-	public Zaposleni(String jMBG, String ime, String prezime, Date datumRodjenja, String email, Adresa adresaStanovanja,
+	public Zaposleni(String JMBG, String ime, String prezime, Date datumRodjenja, String email, Adresa adresaStanovanja,
 			List<Softver> softveri, RadnoMesto radnoMesto) {
-		JMBG = jMBG;
+		this.JMBG = JMBG;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.datumRodjenja = datumRodjenja;
@@ -89,6 +89,18 @@ public class Zaposleni {
 	public void setSoftveri(List<Softver> softveri) {
 		this.softveri = softveri;
 	}
+	
+	public void addSoftver(Softver softver) {
+		if (!softveri.contains(softver)) {
+			softveri.add(softver);
+		}
+	}
+	
+	public void removeSoftver(Softver softver) {
+		if (softveri.contains(softver)) {
+			softveri.remove(softver);
+		}
+	}
 
 	public RadnoMesto getRadnoMesto() {
 		return radnoMesto;
@@ -102,22 +114,36 @@ public class Zaposleni {
 		return JMBG;
 	}
 
+	
+	/**
+	 * Svaki toString metod je ustavri formatiranje za ispis u fajl
+	 * */
 	@Override
 	public String toString() {
-		return JMBG + "," + ime + "," + prezime + "," + Formating.formatDate(datumRodjenja) + "," + email + "," + adresaStanovanja + ","
-				+ softveri + "," + radnoMesto;
+		return JMBG 
+				+ "," + ime 
+				+ "," + prezime 
+				+ "," + Formating.formatDate(datumRodjenja) 
+				+ "," + email 
+				+ "," + adresaStanovanja 
+				+ "," + softveri 
+				+ "," + radnoMesto.toString();
 	}
-	
-	public static Zaposleni parseZaposleni(String line) {
+	 
+	 
+	/**
+	 * Kasnije ga samo parsiramo iz tog zapisa
+	 * */
+	public static Zaposleni parse(String line) {
 		String tokens[] = line.split(",");
-//		Zaposleni zaposleni = new Zaposleni(
-//				tokens[0], 
-//				tokens[1], 
-//				tokens[2], 
-//				Formating.parseDate(tokens[3]), 
-//				tokens[4],
-//				Adresa.parseAdresa(tokens[5]), , null, null)
-		return null;
-	}
-
-}
+		return new Zaposleni( 
+				tokens[0], 
+				tokens[1], 
+				tokens[2], 
+				Formating.parseDate(tokens[3]), 
+				tokens[4],
+				Adresa.parse(tokens[5]),
+				SoftverCrud.getSoftveriByIDs(Formating.toList(tokens[6])), 
+				RadnoMesto.valueOf(tokens[7])); 
+		
+	}}
