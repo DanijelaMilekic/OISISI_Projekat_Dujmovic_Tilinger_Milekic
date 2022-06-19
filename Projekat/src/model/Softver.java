@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import crud.CetkicaCrud;
+import crud.RenderCrud;
 import util.Formating;
 
 public class Softver {
@@ -90,6 +92,17 @@ public class Softver {
 				+ "," + render.getNaziv();
 	}
 	
+	
+	
+	public static Softver parse(String line) {
+		String[] tokens = line.split(",");
+		return new Softver(
+				tokens[0],
+				CetkicaCrud.getCetkiceByIDs(Formating.toList(tokens[1])), 
+				tokens[2], 
+				Formating.toList(tokens[3]),
+				RenderCrud.getRenderByID(tokens[4]));
+	}
 	
 
 }

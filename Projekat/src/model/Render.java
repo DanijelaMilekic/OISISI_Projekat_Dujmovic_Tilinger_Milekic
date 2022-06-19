@@ -76,6 +76,16 @@ public class Render {
 		return naziv + "," + Formating.formatList(materijali.toArray()) + "," + Formating.formatList(kamere.toArray())
 				+ "," + svetlo + "," + Formating.formatList(objekti.toArray());
 	}
+	
+	public static Render parse(String line) {
+		String[] tokens = line.split(",");
+		return new Render(
+				tokens[0], 
+				Formating.toList(tokens[1]), 
+				Formating.toList(tokens[2]), 
+				tokens[3], 
+				Formating.toList(tokens[4]));
+	}
 
 
 }

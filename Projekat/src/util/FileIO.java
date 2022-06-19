@@ -47,6 +47,12 @@ public class FileIO {
 		return true;
 	}
 	
+	public static boolean appendToFile(Files file, String content) {
+		List<String> list = new ArrayList<>();
+		list.add(content);
+		return appendToFile(file, list);
+	}
+	
 	public static boolean appendToFile(Files file, List<String> content) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file.filename, true))) {
 			for (String string : content) {
@@ -62,6 +68,7 @@ public class FileIO {
 
 		return true;
 	}
+
 
 
 }

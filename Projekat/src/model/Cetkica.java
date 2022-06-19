@@ -5,7 +5,7 @@ import java.awt.Color;
 public class Cetkica {
 
 //	Id cetkice
-	private String naziv;
+	private final String naziv;
 	
 	private String namena;
 	
@@ -32,9 +32,7 @@ public class Cetkica {
 	}
 
 
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
-	}
+
 
 
 	public String getNamena() {
@@ -61,6 +59,12 @@ public class Cetkica {
 	public String toString() {
 		return naziv + "," + namena + "," + boja.getRGB();
 	}
+	
+	public static Cetkica parse(String line) {
+		String[] tokens = line.split(",");
+		return new Cetkica(tokens[0], tokens[1], new Color(Integer.parseInt(tokens[2]), true));
+	}
+	
 	
 	
 }

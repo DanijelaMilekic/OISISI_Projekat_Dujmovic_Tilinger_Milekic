@@ -2,7 +2,9 @@ package util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Formating {
 	
@@ -21,6 +23,15 @@ public class Formating {
 		return sb.toString();
 	}
 	
+	public static List<String> toList(String line) {
+		String[] tokens = line.split(";");
+		List<String> list = new ArrayList<>();
+		for (String string : tokens) {
+			list.add(string);
+		}
+		return list;
+	}
+
 	public static String formatDate(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		return sdf.format(date);
@@ -35,5 +46,4 @@ public class Formating {
 		}
 		return null;
 	}
-
 }
