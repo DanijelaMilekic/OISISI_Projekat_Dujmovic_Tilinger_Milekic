@@ -3,7 +3,7 @@ package model;
 import java.awt.Color;
 
 public class Cetkica {
-
+	
 //	Id cetkice
 	private final String naziv;
 	
@@ -64,7 +64,5 @@ public class Cetkica {
 		String[] tokens = line.split(",");
 		return new Cetkica(tokens[0], tokens[1], new Color(Integer.parseInt(tokens[2]), true));
 	}
-	
-	
-	
+
 }

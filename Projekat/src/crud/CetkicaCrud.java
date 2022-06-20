@@ -12,7 +12,6 @@ import util.Files;
 
 public class CetkicaCrud {
 
-	
 	private static Map<String, Cetkica> cetkice;
 
 	public static void loadCetkiceMap() {
@@ -78,13 +77,13 @@ public class CetkicaCrud {
 	}
 	
 	public static boolean deleteCetkica(Cetkica cetkica) {
-		boolean successful = cetkice.remove(cetkica.getNaziv(), cetkica);
+		if (!cetkice.containsKey(cetkica.getNaziv())) return false;
 		
-		if (successful) {
-			updateFile();
-		} 
+		SoftverCrud.removeCetkica(cetkica);
 		
-		return successful;
+		updateFile();
+		
+		return true;
 	}
-
+	
 }

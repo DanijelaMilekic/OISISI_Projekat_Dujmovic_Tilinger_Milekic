@@ -10,7 +10,7 @@ import util.Formating;
 public class Softver {
 	
 //	Id softvera
-	private String naziv;
+	private final String naziv;
 	
 	private List<Cetkica> cetkice;
 	
@@ -22,6 +22,8 @@ public class Softver {
 	
 	public Softver(String naziv) {
 		this.naziv = naziv;
+		this.cetkice = new ArrayList<>();
+		this.alatiZaAnimaciju = new ArrayList<>();
 	}
 
 	public Softver(String naziv, List<Cetkica> cetkice, String fajlFormat, List<String> alatiZaAnimaciju,
@@ -38,9 +40,6 @@ public class Softver {
 		return naziv;
 	}
 
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
-	}
 
 	public List<Cetkica> getCetkice() {
 		return cetkice;
@@ -48,6 +47,18 @@ public class Softver {
 
 	public void setCetkice(List<Cetkica> cetkice) {
 		this.cetkice = cetkice;
+	}
+	
+	public void addCetkica(Cetkica cetkica) {
+		if (!cetkice.contains(cetkica)) {
+			cetkice.add(cetkica);
+		}
+	}
+	
+	public void removeCetkica(Cetkica cetkica) {
+		if (cetkice.contains(cetkica)) {
+			cetkice.remove(cetkica);
+		}
 	}
 
 	public String getFajlFormat() {
@@ -64,6 +75,18 @@ public class Softver {
 
 	public void setAlatiZaAnimaciju(List<String> alatiZaAnimaciju) {
 		this.alatiZaAnimaciju = alatiZaAnimaciju;
+	}
+	
+	public void addAlatZaAnimaciju(String alatZaAnimaciju) {
+		if (!alatiZaAnimaciju.contains(alatZaAnimaciju)) {
+			alatiZaAnimaciju.add(alatZaAnimaciju);
+		}
+	}
+	
+	public void removeAlatZaAnimaciju(String alatZaAnimaciju) {
+		if (alatiZaAnimaciju.contains(alatZaAnimaciju)) {
+			alatiZaAnimaciju.remove(alatZaAnimaciju);
+		}
 	}
 
 	public Render getRender() {
@@ -91,8 +114,6 @@ public class Softver {
 				+ "," + Formating.formatList(alatiZaAnimaciju.toArray()) 
 				+ "," + render.getNaziv();
 	}
-	
-	
 	
 	public static Softver parse(String line) {
 		String[] tokens = line.split(",");

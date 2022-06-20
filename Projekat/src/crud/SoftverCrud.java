@@ -40,6 +40,14 @@ public class SoftverCrud {
 		}
 		return list;
 	}
+	
+	public static Softver[] toArray(List<Softver> list) {
+		Softver[] niz = new Softver[list.size()];
+		for (int i = 0; i < niz.length; i++) {
+			niz[i] = list.get(i);
+		}
+		return niz;
+	}
 
 	public static Softver getSoftverByID(String naziv) {
 		return softveri.get(naziv);
@@ -77,13 +85,35 @@ public class SoftverCrud {
 	}
 
 	public static boolean deleteSoftver(Softver softver) {
-		boolean successful = softveri.remove(softver.getNaziv(), softver);
+		if (!softveri.containsKey(softver.getNaziv()))
+			return false;
 
-		if (successful) {
-			updateFile();
+		ZaposleniCrud.removeSoftver(softver);
+
+		softveri.remove(softver.getNaziv());
+
+		updateFile();
+
+		return true;
+	}
+
+	public static void removeRender(Render render) {
+		for (Map.Entry<String, Softver> entry : softveri.entrySet()) {
+			if (entry.getValue().getRender().getNaziv().equals(render.getNaziv())) {
+				deleteSoftver(entry.getValue());
+				break;
+			}
 		}
 
-		return successful;
 	}
 	
+	public static void removeCetkica(Cetkica cetkica) {
+		for (Map.Entry<String, Softver> entry : softveri.entrySet()) {
+			entry.getValue().removeCetkica(cetkica);
+		}
+		
+		updateFile();
+
+	}
+
 }

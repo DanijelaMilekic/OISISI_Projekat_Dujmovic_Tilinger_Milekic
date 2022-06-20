@@ -10,7 +10,7 @@ import util.FileIO;
 import util.Files;
 
 public class RenderCrud {
-	
+
 	private static Map<String, Render> renderi;
 
 	public static void loadRenderiMap() {
@@ -39,9 +39,18 @@ public class RenderCrud {
 		return list;
 	}
 
+	public static Render[] toArray(List<Render> list) {
+		Render[] niz = new Render[list.size()];
+		for (int i = 0; i < niz.length; i++) {
+			niz[i] = list.get(i);
+		}
+		return niz;
+	}
+
 	public static Render getRenderByID(String naziv) {
 		return renderi.get(naziv);
 	}
+	
 
 	public static boolean createRender(String naziv, List<String> materijali, List<String> kamere, String svetlo,
 			List<String> objekti) {
@@ -75,14 +84,14 @@ public class RenderCrud {
 	}
 
 	public static boolean deleteRender(Render render) {
-		boolean successful = renderi.remove(render.getNaziv(), render);
+		if (!renderi.containsKey(render.getNaziv())) return false;
+		
+		SoftverCrud.removeRender(render);
+		
+		renderi.remove(render.getNaziv());
 
-		if (successful) {
-			updateFile();
-		}
-
-		return successful;
+		updateFile();
+		return true;
 	}
-
 
 }
