@@ -1,6 +1,5 @@
 package crud;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -89,6 +88,13 @@ public class ZaposleniCrud {
 		return successful;
 	}
 	
-
+	public static void removeSoftver(Softver softver) {
+		for (Map.Entry<String, Zaposleni> entry : zaposlenis.entrySet()) {
+			entry.getValue().removeSoftver(softver);
+		}
+		
+		updateFile();
+	}
+	
 
 }

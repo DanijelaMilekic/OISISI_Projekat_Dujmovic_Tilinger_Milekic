@@ -6,7 +6,9 @@ import java.util.List;
 import crud.SoftverCrud;
 import util.Formating;
 
-public class Zaposleni {	
+public class Zaposleni {
+	
+	
 //	Id Zaposlenog
 	private final String JMBG;
 	
@@ -146,4 +148,6 @@ public class Zaposleni {
 				SoftverCrud.getSoftveriByIDs(Formating.toList(tokens[6])), 
 				RadnoMesto.valueOf(tokens[7])); 
 		
-	}}
+	}
+
+}

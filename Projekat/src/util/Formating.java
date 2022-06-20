@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Formating {
-	
+
 	public static String formatList(Object[] list) {
 		StringBuilder sb = new StringBuilder();
 
@@ -33,17 +33,37 @@ public class Formating {
 	}
 
 	public static String formatDate(Date date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy.");
 		return sdf.format(date);
 	}
 	
 	public static Date parseDate(String token) {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy.");
 		try {
 			return sdf.parse(token);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public static boolean checkFormat(String token) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		try {
+			sdf.parse(token);
+		} catch (ParseException e) {
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean checkNumber(String token) {
+		try {
+			Integer.parseInt(token);
+		} catch (NumberFormatException e) {
+			return false;
+		}
+		return true;
+		
 	}
 }
