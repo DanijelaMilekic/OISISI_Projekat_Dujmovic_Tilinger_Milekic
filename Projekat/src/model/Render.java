@@ -7,7 +7,7 @@ import util.Formating;
 public class Render {
 	
 //	Id rendera
-	private String naziv;
+	private final String naziv;
 
 	private List<String> materijali;
 
@@ -20,6 +20,9 @@ public class Render {
 	public Render(String naziv) {
 		super();
 		this.naziv = naziv;
+		this.materijali = new ArrayList<>();
+		this.kamere = new ArrayList<>();
+		this.objekti = new ArrayList<>();
 	}
 
 	public Render(String naziv, List<String> materijali, List<String> kamere, String svetlo, List<String> objekti) {
@@ -35,9 +38,7 @@ public class Render {
 		return naziv;
 	}
 
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
-	}
+
 
 	public List<String> getMaterijali() {
 		return materijali;
@@ -45,6 +46,18 @@ public class Render {
 
 	public void setMaterijali(List<String> materijali) {
 		this.materijali = materijali;
+	}
+	
+	public void addMaterijal(String materijal) {
+		if (!materijali.contains(materijal)) {
+			materijali.add(materijal);
+		}
+	}
+	
+	public void removeMaterijal(String materijal) {
+		if (materijali.contains(materijal)) {
+			materijali.remove(materijal);
+		}
 	}
 
 	public List<String> getKamere() {
@@ -54,6 +67,18 @@ public class Render {
 	public void setKamere(List<String> kamere) {
 		this.kamere = kamere;
 	}
+	
+	public void addKamera(String kamera) {
+		if (!kamere.contains(kamera)) {
+			kamere.add(kamera);
+		}
+	}
+	
+	public void removeKamera(String kamera) {
+		if (kamere.contains(kamera)) {
+			kamere.remove(kamera);
+		}
+	}
 
 	public String getSvetlo() {
 		return svetlo;
@@ -62,6 +87,7 @@ public class Render {
 	public void setSvetlo(String svetlo) {
 		this.svetlo = svetlo;
 	}
+	
 
 	public List<String> getObjekti() {
 		return objekti;
@@ -70,12 +96,28 @@ public class Render {
 	public void setObjekti(List<String> objekti) {
 		this.objekti = objekti;
 	}
+	
+	public void addObjekat(String objekat) {
+		if (!objekti.contains(objekat)) {
+			objekti.add(objekat);
+		}
+	}
+	
+	public void removeObjekat(String objekat) {
+		if (objekti.contains(objekat)) {
+			objekti.remove(objekat);
+		}
+	}
+	
 
 	@Override
 	public String toString() {
-		return naziv + "," + Formating.formatList(materijali.toArray()) + "," + Formating.formatList(kamere.toArray())
-				+ "," + svetlo + "," + Formating.formatList(objekti.toArray());
-	}
+		return naziv 
+				+ "," + Formating.formatList(materijali.toArray()) 
+				+ "," + Formating.formatList(kamere.toArray())
+				+ "," + svetlo 
+				+ "," + Formating.formatList(objekti.toArray());
+	} 
 	
 	public static Render parse(String line) {
 		String[] tokens = line.split(",");
@@ -86,6 +128,5 @@ public class Render {
 				tokens[3], 
 				Formating.toList(tokens[4]));
 	}
-
 
 }
