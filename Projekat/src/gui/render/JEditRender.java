@@ -3,9 +3,13 @@ package gui.render;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Collections;
+import java.awt.FlowLayout;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -16,19 +20,37 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import crud.RenderCrud;
+import gui.Refreshable;
+import model.Render;
+
 public class JEditRender extends JDialog {
-	
+
 	private static final long serialVersionUID = -4975791820967261865L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfMaterijali;
 	private JTextField tfKamere;
 	private JTextField tfSvetlo;
 	private JTextField tfObjekti;
+	private JLabel lblError;
+	private JDialog thisDialog = this;
+	
+
+	private JList<String> listMaterijali;
+	private DefaultListModel<String> modelMaterijali;
+
+	private JList<String> listKamere;
+	private DefaultListModel<String> modelKamere;
+
+	private JList<String> listObjekti;
+	private DefaultListModel<String> modelObjekti;
+
+	private boolean somethingEmpty = false;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		try {
 			JEditRender dialog = new JEditRender();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -36,12 +58,12 @@ public class JEditRender extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.
 	 */
-	public JEditRender() {
+	public JEditRender(Render render, Refreshable main) {
 		setTitle("Izmena podataka rendera");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds(dimension.width * 1/4, dimension.height * 1/4, dimension.width * 1/2, dimension.height * 1/2);
@@ -62,17 +84,32 @@ public class JEditRender extends JDialog {
 		}
 		{
 			JButton btnAddMaterijal = new JButton("Dodaj materijal");
+			btnAddMaterijal.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (!modelMaterijali.contains(tfMaterijali.getText())) {
+						modelMaterijali.addElement(tfMaterijali.getText());
+					}
+				}
+			});
 			btnAddMaterijal.setBounds(783, 62, 142, 25);
 			contentPanel.add(btnAddMaterijal);
 		}
 		{
-			JList<String> listMaterijali = new JList<>();
+			listMaterijali = new JList<>();
+			modelMaterijali = new DefaultListModel<>();
+			modelMaterijali.addAll(render.getMaterijali());
+			listMaterijali.setModel(modelMaterijali);
 			listMaterijali.setBounds(142, 94, 633, 81);
 			listMaterijali.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			contentPanel.add(listMaterijali);
 		}
 		{
 			JButton btnRemoveMaterijal = new JButton("Ukloni materijal");
+			btnRemoveMaterijal.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					modelMaterijali.removeElement(listMaterijali.getSelectedValue());
+				}
+			});
 			btnRemoveMaterijal.setBounds(783, 94, 145, 25);
 			contentPanel.add(btnRemoveMaterijal);
 		}
@@ -89,17 +126,32 @@ public class JEditRender extends JDialog {
 		}
 		{
 			JButton btnAddKamera = new JButton("Dodaj kameru");
+			btnAddKamera.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (!modelKamere.contains(tfKamere.getText())) {
+						modelKamere.addElement(tfKamere.getText());
+					}
+				}
+			});
 			btnAddKamera.setBounds(783, 182, 132, 25);
 			contentPanel.add(btnAddKamera);
 		}
 		{
-			JList<String> listKamere = new JList<>();
+			listKamere = new JList<>();
+			modelKamere = new DefaultListModel<>();
+			modelKamere.addAll(render.getKamere());
+			listKamere.setModel(modelKamere);
 			listKamere.setBounds(142, 214, 633, 81);
 			listKamere.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			contentPanel.add(listKamere);
 		}
 		{
 			JButton btnRemoveKamera = new JButton("Ukloni kameru");
+			btnRemoveKamera.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					modelKamere.removeElement(listKamere.getSelectedValue());
+				}
+			});
 			btnRemoveKamera.setBounds(783, 214, 135, 25);
 			contentPanel.add(btnRemoveKamera);
 		}
@@ -110,6 +162,7 @@ public class JEditRender extends JDialog {
 		}
 		{
 			tfSvetlo = new JTextField();
+			tfSvetlo.setText(render.getSvetlo());
 			tfSvetlo.setBounds(142, 302, 633, 19);
 			contentPanel.add(tfSvetlo);
 			tfSvetlo.setColumns(10);
@@ -127,28 +180,43 @@ public class JEditRender extends JDialog {
 		}
 		{
 			JButton btnAddObjekat = new JButton("Dodaj objekat");
+			btnAddObjekat.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (!modelObjekti.contains(tfObjekti.getText())) {
+						modelObjekti.addElement(tfObjekti.getText());
+					}
+				}
+			});
 			btnAddObjekat.setBounds(783, 328, 133, 25);
 			contentPanel.add(btnAddObjekat);
 		}
 		{
-			JList<String> listObjekti = new JList<>();
+			listObjekti = new JList<>();
+			modelObjekti = new DefaultListModel<>();
+			modelObjekti.addAll(render.getObjekti());
+			listObjekti.setModel(modelObjekti);
 			listObjekti.setBounds(142, 360, 633, 81);
 			listObjekti.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			contentPanel.add(listObjekti);
 		}
 		{
-			JButton btnNewButton_5 = new JButton("Ukloni objekat");
-			btnNewButton_5.setBounds(783, 360, 136, 25);
-			contentPanel.add(btnNewButton_5);
+			JButton btnRemoveObjekat = new JButton("Ukloni objekat");
+			btnRemoveObjekat.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					modelObjekti.removeElement(listObjekti.getSelectedValue());
+				}
+			});
+			btnRemoveObjekat.setBounds(783, 360, 136, 25);
+			contentPanel.add(btnRemoveObjekat);
 		}
 		{
-			JLabel lblPopuniteSvaPolja = new JLabel("Popunite sva polja!");
-			lblPopuniteSvaPolja.setBounds(390, 448, 136, 15);
-			lblPopuniteSvaPolja.setVisible(false);
-			lblPopuniteSvaPolja.setForeground(Color.RED);
-			lblPopuniteSvaPolja.setHorizontalTextPosition(SwingConstants.CENTER);
-			lblPopuniteSvaPolja.setHorizontalAlignment(SwingConstants.CENTER);
-			contentPanel.add(lblPopuniteSvaPolja);
+			lblError = new JLabel("Popunite sva polja!");
+			lblError.setBounds(390, 448, 136, 15);
+			lblError.setVisible(false);
+			lblError.setForeground(Color.RED);
+			lblError.setHorizontalTextPosition(SwingConstants.CENTER);
+			lblError.setHorizontalAlignment(SwingConstants.CENTER);
+			contentPanel.add(lblError);
 		}
 		
 		{
@@ -157,16 +225,43 @@ public class JEditRender extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						validateInput();
+						if (!somethingEmpty) {
+							render.setMaterijali(Collections.list(modelMaterijali.elements()));
+							render.setKamere(Collections.list(modelKamere.elements()));
+							render.setObjekti(Collections.list(modelObjekti.elements()));
+							render.setSvetlo(tfSvetlo.getText());
+							RenderCrud.updateRender(render);
+							main.refresh(thisDialog);
+						} else {
+							lblError.setVisible(somethingEmpty);
+						}
+
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						thisDialog.dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	
+	private void validateInput() {
+		somethingEmpty = modelMaterijali.isEmpty() || modelKamere.isEmpty()
+				|| modelObjekti.isEmpty() || tfSvetlo.getText() == null || tfSvetlo.getText().isBlank();
+
 	}
 
 }

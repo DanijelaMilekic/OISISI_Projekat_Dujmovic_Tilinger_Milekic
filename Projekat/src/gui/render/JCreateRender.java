@@ -270,9 +270,10 @@ public class JCreateRender extends JDialog {
 
 	private void validateInput() {
 		notUnique = false;
-		somethingEmpty = tfNaziv.getText() == null || (notUnique = RenderCrud.getRenderByID(tfNaziv.getText()) != null)
-				|| tfNaziv.getText().isBlank() || modelMaterijali.isEmpty() || modelKamere.isEmpty()
-				|| modelObjekti.isEmpty() || tfSvetlo.getText() == null || tfSvetlo.getText().isBlank();
+		somethingEmpty = tfNaziv.getText() == null || tfNaziv.getText().isBlank()
+				|| (notUnique = RenderCrud.getRenderByID(tfNaziv.getText()) != null) || modelMaterijali.isEmpty()
+				|| modelKamere.isEmpty() || modelObjekti.isEmpty() || tfSvetlo.getText() == null
+				|| tfSvetlo.getText().isBlank();
 
 	}
 

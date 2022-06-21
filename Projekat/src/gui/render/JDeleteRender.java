@@ -5,7 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -14,15 +15,21 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class JDeleteRender extends JDialog{
-	
+import crud.RenderCrud;
+import gui.Refreshable;
+import model.Render;
+
+public class JDeleteRender extends JDialog {
+
 	private static final long serialVersionUID = -8479622110323399067L;
 	private final JPanel contentPanel = new JPanel();
+	private JDialog thisDialog = this;
 
+	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		try {
 			JDeleteRender dialog = new JDeleteRender();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -30,12 +37,12 @@ public class JDeleteRender extends JDialog{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.
 	 */
-	public JDeleteRender() {
+	public JDeleteRender(Render render, Refreshable main) {
 		setTitle("Brisanje rendera");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds(dimension.width * 3/8, dimension.height * 3/8, dimension.width * 1/4, dimension.height * 1/4);
@@ -55,17 +62,27 @@ public class JDeleteRender extends JDialog{
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						RenderCrud.deleteRender(render);
+						main.refresh(thisDialog);
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						thisDialog.dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
-
 
 }

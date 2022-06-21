@@ -14,6 +14,10 @@ public class RenderiTable extends AbstractTableModel {
 	public RenderiTable(List<Render> renderi) {
 		this.renderi = renderi;
 	}
+	
+	public void setRenderi(List<Render> renderi) {
+		this.renderi = renderi;
+	}
 
 	@Override
 	public int getRowCount() {
@@ -81,5 +85,9 @@ public class RenderiTable extends AbstractTableModel {
 		}
 		}
 		return null;
+	}
+	
+	public Render getRowValue(int i) {
+		return renderi.get(i);
 	}
 }
