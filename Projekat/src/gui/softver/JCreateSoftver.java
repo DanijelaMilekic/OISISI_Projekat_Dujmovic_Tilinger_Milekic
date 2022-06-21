@@ -65,7 +65,9 @@ public class JCreateSoftver extends JDialog {
 	public JCreateSoftver(Refreshable main) {
 		setTitle("Kreiranje novog softvera");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(dimension.width * 1 / 4, dimension.height * 1 / 4, dimension.width * 1 / 2, dimension.height * 1 / 2);
+		setSize(800, 600);		
+		setLocationRelativeTo(null);
+//		setBounds(dimension.width * 1 / 4, dimension.height * 1 / 4, dimension.width * 1 / 2, dimension.height * 1 / 2);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

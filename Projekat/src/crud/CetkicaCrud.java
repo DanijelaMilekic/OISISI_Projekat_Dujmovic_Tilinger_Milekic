@@ -47,6 +47,15 @@ public class CetkicaCrud {
 		return cetkice.get(naziv);
 	}
 	
+	public static int[] indices(List<Cetkica> list) {
+		int[] indices = new int[list.size()]; //niz indeksa int
+		List<Cetkica> cetkice = getAllCetkice();
+		for (int i = 0; i < indices.length; i++) {
+			indices[i] = cetkice.indexOf(list.get(i));
+		}
+		return indices;
+	}
+	
 	public static boolean createCetkica(String naziv, String namena, Color boja) { 
 		if (cetkice.containsKey(naziv)) return false;
 		

@@ -24,18 +24,18 @@ import gui.Refreshable;
 
 public class JCreateCetkica extends JDialog {
 
-	private static final long serialVersionUID = 9040713049020031322L;
+
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfNaziv;
 	private JTextField tfNamena;
 	private JDialog thisDialog = this;
-	private Color selectedColor;
+	private Color selectedColor = Color.ORANGE;
 	private JLabel lblError;
 	private JLabel lblErrorNaziv;
 	
 	private boolean somethingEmpty = false;
 	private boolean notUnique = false;
-
+	private JTextField tfColor;
 
 	/**
 	 * Launch the application.
@@ -96,6 +96,7 @@ public class JCreateCetkica extends JDialog {
 		btnBoja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedColor = JColorChooser.showDialog(thisDialog, "Izaberite boju", Color.ORANGE);
+				tfColor.setBackground(selectedColor);
 			}
 		});
 		contentPanel.add(btnBoja);
@@ -105,6 +106,14 @@ public class JCreateCetkica extends JDialog {
 			lblError.setVisible(false);
 			lblError.setForeground(Color.RED);
 			contentPanel.add(lblError);
+		}
+		{
+			tfColor = new JTextField();
+			tfColor.setEnabled(false);
+			tfColor.setBackground(selectedColor);
+			tfColor.setBounds(290, 107, 114, 19);
+			contentPanel.add(tfColor);
+			tfColor.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();

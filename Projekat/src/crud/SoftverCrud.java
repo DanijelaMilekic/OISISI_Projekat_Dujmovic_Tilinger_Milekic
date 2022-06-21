@@ -41,6 +41,15 @@ public class SoftverCrud {
 		return list;
 	}
 	
+	public static int[] indices(List<Softver> list) {
+		int[] indices = new int[list.size()];
+		List<Softver> softeri = getAllSoftveri();
+		for (int i = 0; i < indices.length; i++) {
+			indices[i] = softeri.indexOf(list.get(i));
+		}
+		return indices;
+	}
+	
 	public static Softver[] toArray(List<Softver> list) {
 		Softver[] niz = new Softver[list.size()];
 		for (int i = 0; i < niz.length; i++) {
@@ -109,11 +118,13 @@ public class SoftverCrud {
 	
 	public static void removeCetkica(Cetkica cetkica) {
 		for (Map.Entry<String, Softver> entry : softveri.entrySet()) {
-			entry.getValue().removeCetkica(cetkica);
+			entry.getValue().removeCetkica(cetkica); 
+			if (entry.getValue().getCetkice().size() == 0) {
+				deleteSoftver(entry.getValue());
+			}
 		}
 		
 		updateFile();
-
+		
 	}
-
 }

@@ -80,5 +80,9 @@ public class SoftveriTable extends AbstractTableModel {
 		}
 		return null;
 	}
+	
+	public Softver getRowValue(int i) {
+		return softveri.get(i);
+	}
 }
 

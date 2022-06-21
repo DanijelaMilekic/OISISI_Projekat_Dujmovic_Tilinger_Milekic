@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -13,16 +15,20 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import crud.CetkicaCrud;
+import gui.Refreshable;
+import model.Cetkica;
 
-
-public class JDeleteCetkica extends JDialog {private final JPanel contentPanel = new JPanel();
+public class JDeleteCetkica extends JDialog {
+	private final JPanel contentPanel = new JPanel();
+	private JDialog thisDialog = this;
 
 /**
  * Launch the application.
  */
 
 
-public static void main(String[] args) {
+	/*	public static void main(String[] args) {
 	try {
 		JDeleteCetkica dialog = new JDeleteCetkica();
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -30,12 +36,12 @@ public static void main(String[] args) {
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-}
+}*/
 
 /**
  * Create the dialog.
  */
-public JDeleteCetkica() {
+public JDeleteCetkica(Cetkica cetkica, Refreshable main) {
 	setTitle("Brisanje cetkice");
 	Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 	setBounds(dimension.width * 3/8, dimension.height * 3/8, dimension.width * 1/4, dimension.height * 1/4);
@@ -55,12 +61,23 @@ public JDeleteCetkica() {
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 		{
 			JButton okButton = new JButton("OK");
+			okButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					CetkicaCrud.deleteCetkica(cetkica);
+					main.refresh(thisDialog);
+				}
+			});
 			okButton.setActionCommand("OK");
 			buttonPane.add(okButton);
 			getRootPane().setDefaultButton(okButton);
 		}
 		{
 			JButton cancelButton = new JButton("Cancel");
+			cancelButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					thisDialog.dispose();
+				}
+			});
 			cancelButton.setActionCommand("Cancel");
 			buttonPane.add(cancelButton);
 		}

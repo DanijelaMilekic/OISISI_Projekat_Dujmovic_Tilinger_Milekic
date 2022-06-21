@@ -57,6 +57,10 @@ public class Cetkica {
 
 	@Override
 	public String toString() {
+		return naziv;
+	}
+	
+	public String toFileFormat() {
 		return naziv + "," + namena + "," + boja.getRGB();
 	}
 	

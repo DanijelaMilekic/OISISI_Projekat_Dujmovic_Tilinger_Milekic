@@ -9,7 +9,6 @@ import model.Cetkica;
 public class CetkicaTable extends AbstractTableModel  {
 
 	
-	private static final long serialVersionUID = -7870870896455561500L;
 	
 	private List<Cetkica> cetkice;
 
@@ -17,6 +16,10 @@ public class CetkicaTable extends AbstractTableModel  {
 		this.cetkice = cetkice;
 	}
 
+	public void setCetkice(List<Cetkica> cetkice) {
+		this.cetkice = cetkice;
+	}
+	
 	@Override
 	public int getRowCount() {
 		return cetkice.size();
