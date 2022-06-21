@@ -17,6 +17,10 @@ public class ZaposleniTable extends AbstractTableModel {
 	public ZaposleniTable(List<Zaposleni> zaposlenis) {
 		this.zaposlenis = zaposlenis;
 	}
+	
+	public void setZaposlenis(List<Zaposleni> zaposlenis) {
+		this.zaposlenis = zaposlenis;
+	}
 
 	@Override
 	public int getRowCount() {
@@ -93,5 +97,8 @@ public class ZaposleniTable extends AbstractTableModel {
 		}
 		return null;
 	}
+	
+	public Zaposleni getRowValue(int i) {
+		return zaposlenis.get(i);
+	}
 }
-

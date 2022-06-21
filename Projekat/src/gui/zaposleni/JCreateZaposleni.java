@@ -69,6 +69,7 @@ public class JCreateZaposleni extends JDialog {
 		setTitle("Kreiranje novog zaposlenog");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds(dimension.width * 1 / 4, dimension.height * 1 / 4, dimension.width * 1 / 2, dimension.height * 1 / 2);
+
 		getContentPane().setLayout(new BorderLayout());
 		{
 			JPanel buttonPane = new JPanel();
@@ -255,4 +256,3 @@ public class JCreateZaposleni extends JDialog {
 				|| listSoftveri.getSelectedValuesList().isEmpty() || cbRadnoMesto.getSelectedIndex() == -1;
 	}
 }
-
