@@ -1,0 +1,2 @@
+Render1,materijal1;matetijal2;materijal3,kamera1;kamera2;kamera3,svetlo1,objekat1;objekat2;objekat3
+Render2,materijal4;materijal5;materijal6,kamera4;kamera5;kamera6,svetlo2,objekat3;objekat4;objekat5

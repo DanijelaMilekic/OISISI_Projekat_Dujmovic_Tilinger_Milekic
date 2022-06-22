@@ -81,6 +81,18 @@ public class JMain implements Refreshable {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() { 
+			public void run() {
+				try {
+					BootCrud.bootCrud(); 
+					JMain window = new JMain(); 
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -342,6 +354,7 @@ public class JMain implements Refreshable {
 	@Override
 	public void refresh(JDialog dialog) {
 		modelCetkica = new CetkicaTable(CetkicaCrud.getAllCetkice());
+		tableCetkice.setModel(modelCetkica); 
 		tableCetkice.getColumnModel().getColumn(2).setCellRenderer(dCellRenderer);
 		modelRenderi = new RenderiTable(RenderCrud.getAllRenderi());
 		tableRenderi.setModel(modelRenderi);

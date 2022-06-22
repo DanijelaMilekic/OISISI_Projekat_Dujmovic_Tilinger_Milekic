@@ -122,6 +122,10 @@ public class Zaposleni {
 	 * */
 	@Override
 	public String toString() {
+		return ime + " " + prezime + ", " + JMBG + ", " + email;
+	}
+	
+	public String toFileFormat() {
 		return JMBG 
 				+ "," + ime 
 				+ "," + prezime 

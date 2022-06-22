@@ -1,1 +1,3 @@
-
+cetkica3,namena3,-3381505
+boja3,3,-14336
+Cetkica1,Namena1,-12260686

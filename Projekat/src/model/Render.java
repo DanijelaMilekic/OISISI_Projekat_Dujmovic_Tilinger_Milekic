@@ -113,6 +113,9 @@ public class Render {
 
 	@Override
 	public String toString() {
+		return naziv;
+	} 
+	public String toFileFormat() {
 		return naziv 
 				+ "," + Formating.formatList(materijali.toArray()) 
 				+ "," + Formating.formatList(kamere.toArray())

@@ -1,0 +1,2 @@
+1938070809010,Ime1,Prezime1,22.06.1999.,neki@mail.com,22;Ulica1;Grad1,Softver1;Softver2,MODELATOR
+1234567890123,Ime2,Prezime2,11.01.2000.,rand@mail.com,11;Ulica2;Grad2,Softver2,ANIMATOR
