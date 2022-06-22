@@ -1,3 +1,3 @@
-VRay,VRayMaterial,VRayPhysicalCamera,VRaySun; VRayLight,3DModel
-Arnold,Arnold Material,Cylindrical Camera; Fisheye Camera ;Orthographic Camera; Perspective Camera; VR Camera,Arnold Light; Area lights; Sky Dome light; Mesh light,3DModel
-Corona Renderer,Corona Material: Wood; Light; Glass; Fabric,Corona Camera,Corona Lights and Corona Light Material,3DModel
+Render1,VRayMaterial,VRayPhysicalCamera,VRaySun; VRayLight,3DModel
+Render2,Arnold Material,Cylindrical Camera; Fisheye Camera ;Orthographic Camera; Perspective Camera; VR Camera,Arnold Light; Area lights; Sky Dome light; Mesh light,3DModel
+Render3,Corona Material: Wood; Light; Glass; Fabric,Corona Camera,Corona Lights and Corona Light Material,3DModel

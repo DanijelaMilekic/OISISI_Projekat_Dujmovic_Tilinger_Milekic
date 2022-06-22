@@ -92,18 +92,6 @@ public class JMain implements Refreshable {
 				}
 			}
 		});
-	
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BootCrud.bootCrud();
-					JMain window = new JMain();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
 
 	/**
@@ -122,6 +110,7 @@ public class JMain implements Refreshable {
 		frame.setTitle("Naslov");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(dimension.width * 3/4, dimension.height * 3/4);
+		//centriranje prozora preuzeto sa linka: https://stackoverflow.com/questions/11232131/centering-a-jframe
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -201,6 +190,7 @@ public class JMain implements Refreshable {
 		
 		JButton createEntityButton = new JButton("");
 		panel.add(createEntityButton);
+		// za dodavanje ikonica iskoriscena je ideja sa linka za meni: https://www.youtube.com/watch?v=Kmgo00avvEw
 		createEntityButton.setIcon(new ImageIcon("icons/add_box_icon.png"));
 		createEntityButton.addActionListener(createActionListener); 
 		createEntityButton.setBorder(null);
@@ -224,6 +214,11 @@ public class JMain implements Refreshable {
 		JLabel lblToday = new JLabel(Formating.formatDate(new Date())); 
 		lblToday.setHorizontalAlignment(SwingConstants.RIGHT);
 		layeredPane.add(lblToday, BorderLayout.EAST);
+	
+		
+		
+		/* klasa JTabbedPane, reference: https://docs.oracle.com/javase/7/docs/api/javax/swing/JTabbedPane.html
+		                                 https://docs.oracle.com/javase/tutorial/uiswing/components/tabbedpane.html*/
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
@@ -261,6 +256,9 @@ public class JMain implements Refreshable {
 		tableCetkice.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tabbedPane.addTab("Cetkice", null, tableCetkice, null);
 		
+		
+		/*Rad sa menijijma, reference: https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html#mnemonic
+		                               https://www.youtube.com/watch?v=Kmgo00avvEw*/
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
@@ -363,6 +361,7 @@ public class JMain implements Refreshable {
 		modelZaposleni = new ZaposleniTable(ZaposleniCrud.getAllZaposlenis());
 		tableZaposleni.setModel(modelZaposleni);
 
+		//Zatvaranje dijaloga u potpunosti, referenca: https://newbedev.com/button-for-closing-a-jdialog
 		dialog.setVisible(false);
 		dialog.dispose();
 	}
