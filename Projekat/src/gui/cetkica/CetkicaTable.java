@@ -70,7 +70,7 @@ public class CetkicaTable extends AbstractTableModel {
 		return cetkice.get(i);
 	}
 	
-	public Color getColor(int i) { // dodatno za prikaz obojenog polja
+	public Color getColor(int i) { 
 		return cetkice.get(i).getBoja();
 	}
 	

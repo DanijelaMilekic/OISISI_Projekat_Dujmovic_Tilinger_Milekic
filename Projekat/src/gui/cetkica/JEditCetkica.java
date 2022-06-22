@@ -49,7 +49,7 @@ public class JEditCetkica extends JDialog {
 		selectedColor = cetkica.getBoja();
 		setTitle("Izmena podataka cetkice");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(dimension.width * 3 / 8, dimension.height * 3 / 8, dimension.width * 1 / 4, dimension.height * 1 / 4);
+		setBounds(dimension.width * 3 / 9, dimension.height * 3 / 9, dimension.width * 3 / 9, dimension.height * 3 / 9);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

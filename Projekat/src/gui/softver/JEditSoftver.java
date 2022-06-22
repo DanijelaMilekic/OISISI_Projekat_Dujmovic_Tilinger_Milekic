@@ -66,7 +66,9 @@ public class JEditSoftver extends JDialog {
 	public JEditSoftver(Softver softver, Refreshable main) {
 		setTitle("Izmena podataka softvera");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(dimension.width * 1/4, dimension.height * 1/4, dimension.width * 1/2, dimension.height * 1/2);
+		setSize(1000, 600);		
+		setLocationRelativeTo(null);
+//		setBounds(dimension.width * 1/4, dimension.height * 1/4, dimension.width * 1/2, dimension.height * 1/2);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
