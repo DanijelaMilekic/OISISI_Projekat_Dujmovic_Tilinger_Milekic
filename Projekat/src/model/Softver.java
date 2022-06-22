@@ -108,6 +108,10 @@ public class Softver {
 
 	@Override
 	public String toString() {
+		return naziv;
+	}
+	
+	public String toFileFormat()  {
 		return naziv 
 				+ "," + Formating.formatList(cetkiceToNaziv().toArray()) 
 				+ "," + fajlFormat 
