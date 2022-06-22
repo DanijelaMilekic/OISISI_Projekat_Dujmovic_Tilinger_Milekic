@@ -25,6 +25,7 @@ public class CetkicaCrud {
 		}
 	}
 
+	public static Map<String, Cetkica> getCetkiceMap() { 
 		return cetkice;
 	}
 	
