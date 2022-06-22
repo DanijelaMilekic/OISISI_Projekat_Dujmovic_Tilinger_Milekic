@@ -21,7 +21,6 @@ import model.Render;
 
 public class JDeleteRender extends JDialog {
 
-	private static final long serialVersionUID = -8479622110323399067L;
 	private final JPanel contentPanel = new JPanel();
 	private JDialog thisDialog = this;
 

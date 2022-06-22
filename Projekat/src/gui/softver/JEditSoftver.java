@@ -31,13 +31,12 @@ import model.Softver;
 
 public class JEditSoftver extends JDialog {
 
-	private static final long serialVersionUID = 78604694571929511L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfFajlFormat;
 	private JTextField tfAnimationTool;
 	private JLabel lblError;
 	private JDialog thisDialog = this;
-
+	
 	private JList<Cetkica> listCetkice;
 	private DefaultListModel<Cetkica> modelCetkice;
 	
@@ -47,18 +46,20 @@ public class JEditSoftver extends JDialog {
 	private JComboBox<Render> cbRender;
 	
 	private boolean somethingEmpty = false;
+
 	
+
 	/**
 	 * Launch the application.
 	 */
-	/*	public static void main(String[] args) {
-	try {
-		JEditSoftver dialog = new JEditSoftver();
-		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		dialog.setVisible(true);
-	} catch (Exception e) {
-		e.
-}*/
+/*	public static void main(String[] args) {
+		try {
+			JEditSoftver dialog = new JEditSoftver();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.
+	}*/
 
 	/**
 	 * Create the dialog.
@@ -66,9 +67,7 @@ public class JEditSoftver extends JDialog {
 	public JEditSoftver(Softver softver, Refreshable main) {
 		setTitle("Izmena podataka softvera");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		setSize(1000, 600);		
-		setLocationRelativeTo(null);
-//		setBounds(dimension.width * 1/4, dimension.height * 1/4, dimension.width * 1/2, dimension.height * 1/2);
+		setBounds(dimension.width * 1 / 8, dimension.height * 1 / 8, dimension.width * 2/ 3, dimension.height * 2 /3);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

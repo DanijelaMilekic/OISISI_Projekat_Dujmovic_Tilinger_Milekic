@@ -1,2 +1,5 @@
-1938070809010,Ime1,Prezime1,22.06.1999.,neki@mail.com,22;Ulica1;Grad1,Softver1;Softver2,MODELATOR
-1234567890123,Ime2,Prezime2,11.01.2000.,rand@mail.com,11;Ulica2;Grad2,Softver2,ANIMATOR
+3010895004,Danijela,Milekic,30.10.2000.,danijelamilekic30@gmail.com,30;Hajduk Veljkova;Jarak,Blender,MODELATOR
+1901001825039,Antonia,Tilinger,19.01.2001.,antoniatilinger7@gmail.com,47;Mihalja Servoa;Subotica,Blender;ZBrush,MODELATOR
+1808000805069,Lana,Dujmovic,18.08.2000.,llamadujm@gmail.com,33;Djakona Avakuma;Novi Sad,3dsMax,ANIMATOR
+0904000815000,Dunja,Spanovic,09.04.2000.,dunjix@gmail.com,25;Radnicka;Novi Sad,3dsMax,RIGER
+123123123123,Vlado,Georgijev,06.06.1976.,minismomi@gmail.com,46;Zivim sad;Sutra sta ce biti ko zna,ZBrush,ILUSTRATOR

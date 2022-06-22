@@ -53,7 +53,18 @@ import gui.zaposleni.JDeleteZaposleni;
 import gui.zaposleni.JEditZaposleni;
 import gui.zaposleni.ZaposleniTable;
 import util.Formating;
-
+/* REFERENCE:
+ * 
+ * reference za gui su koriscene i u ostalim delova programa (gui), ali su navedene samo u okviru gui.zaposleni (gui.cetkica - za boju)
+ * 
+ * JMenu, i ostalo: How to Use Menus (The Java™ Tutorials > Creating a GUI With Swing > Using Swing Components)
+   How to Use Menus (The Java™ Tutorials > Creating a GUI With Swing > Using Swing Components) Swing Examples - Creating Menu Bar
+   https://www.youtube.com/watch?v=Kmgo00avvEw
+   Centriranje prozora: How to center a JFrame on screen | alvinalexander.com java - Centering a jFrame - Stack Overflow
+   JTabbedPane: https://docs.oracle.com/javase/7/docs/api/javax/swing/JTabbedPane.html
+   https://docs.oracle.com/javase/tutorial/uiswing/components/tabbedpane.html
+   Kako u potpunosti zatvoriti Dialog, ne samo setovati ga na Visilbe = false: https://newbedev.com/button-for-closing-a-jdialog
+ */
 public class JMain implements Refreshable {
 
 	private JFrame frame;
@@ -81,14 +92,14 @@ public class JMain implements Refreshable {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() { 
+		EventQueue.invokeLater(new Runnable() { //napravi deo koda koji paraleno krece da se izvrsava sa normalnim kodom (nit)
 			public void run() {
 				try {
 					BootCrud.bootCrud(); 
 					JMain window = new JMain(); 
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					e.printStackTrace(); 
 				}
 			}
 		});
@@ -107,10 +118,10 @@ public class JMain implements Refreshable {
 	@SuppressWarnings("serial")
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("Naslov");
+		frame.setTitle("Nasa mala firmica");
+		//dimenzje naseg ekrana u pikselima
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(dimension.width * 3/4, dimension.height * 3/4);
-		//centriranje prozora preuzeto sa linka: https://stackoverflow.com/questions/11232131/centering-a-jframe
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -118,11 +129,12 @@ public class JMain implements Refreshable {
 		JToolBar toolBar = new JToolBar();
 		frame.getContentPane().add(toolBar, BorderLayout.NORTH);
 		
-		createActionListener = new ActionListener() {
+		//za otvaranje create dialog nekog tipa		
+		createActionListener = new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
 				JDialog dialog;
-				TableModel table = ((JTable) tabbedPane.getSelectedComponent()).getModel();
-				if (table instanceof ZaposleniTable) {
+				TableModel table = ((JTable) tabbedPane.getSelectedComponent()).getModel(); 
+				if (table instanceof ZaposleniTable) { 
 					dialog = new JCreateZaposleni(thisRefreshable);
 				} else if (table instanceof SoftveriTable) {
 					dialog = new JCreateSoftver(thisRefreshable);
@@ -132,17 +144,18 @@ public class JMain implements Refreshable {
 					dialog = new JCreateRender(thisRefreshable);
 				}
 				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
+				dialog.setVisible(true); 
 			}
 		};
 		
-		editActionListener = new ActionListener() {
+		//za editovanje nekog dialoga
+		editActionListener = new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
 				JDialog dialog;
 				JTable jTable = (JTable) tabbedPane.getSelectedComponent();
 				
-				int index = jTable.getSelectedRow();
-				if (index == -1) {
+				int index = jTable.getSelectedRow(); 
+				if (index == -1) { //ukoliko nista nije selektovano vraca -1
 					return;
 				}
 				TableModel table = (jTable).getModel();
@@ -160,7 +173,8 @@ public class JMain implements Refreshable {
 			}
 		};
 		
-		deleteActionListener = new ActionListener() {
+		//za brisanje
+		deleteActionListener = new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
 				JDialog dialog;
 				JTable jTable = (JTable) tabbedPane.getSelectedComponent();
@@ -184,16 +198,17 @@ public class JMain implements Refreshable {
 			}
 		};
 		
+		//pravljenje panela
 		JPanel panel = new JPanel();
 		toolBar.add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5)); 
 		
+		//pravljenje dugmica
 		JButton createEntityButton = new JButton("");
 		panel.add(createEntityButton);
-		// za dodavanje ikonica iskoriscena je ideja sa linka za meni: https://www.youtube.com/watch?v=Kmgo00avvEw
 		createEntityButton.setIcon(new ImageIcon("icons/add_box_icon.png"));
 		createEntityButton.addActionListener(createActionListener); 
-		createEntityButton.setBorder(null);
+		createEntityButton.setBorder(null); //estetika
 		
 		JButton editEntityButton = new JButton("");
 		panel.add(editEntityButton);
@@ -207,19 +222,17 @@ public class JMain implements Refreshable {
 		deleteEntityButton.addActionListener(deleteActionListener);
 		deleteEntityButton.setBorder(null);
 		
-		JLayeredPane layeredPane = new JLayeredPane();
+		//za datum, status bar 
+		JLayeredPane layeredPane = new JLayeredPane(); 
 		frame.getContentPane().add(layeredPane, BorderLayout.SOUTH);
 		layeredPane.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblToday = new JLabel(Formating.formatDate(new Date())); 
 		lblToday.setHorizontalAlignment(SwingConstants.RIGHT);
 		layeredPane.add(lblToday, BorderLayout.EAST);
-	
 		
 		
-		/* klasa JTabbedPane, reference: https://docs.oracle.com/javase/7/docs/api/javax/swing/JTabbedPane.html
-		                                 https://docs.oracle.com/javase/tutorial/uiswing/components/tabbedpane.html*/
-		
+		//TABOVI
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
@@ -244,6 +257,7 @@ public class JMain implements Refreshable {
 		tableCetkice = new JTable();
 		modelCetkica = new CetkicaTable(CetkicaCrud.getAllCetkice());
 		tableCetkice.setModel(modelCetkica);
+		//definisanje dCellRenderer-a
 		dCellRenderer = new DefaultTableCellRenderer() {
 			@Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -257,8 +271,7 @@ public class JMain implements Refreshable {
 		tabbedPane.addTab("Cetkice", null, tableCetkice, null);
 		
 		
-		/*Rad sa menijijma, reference: https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html#mnemonic
-		                               https://www.youtube.com/watch?v=Kmgo00avvEw*/
+		//MenuBar
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
@@ -269,7 +282,7 @@ public class JMain implements Refreshable {
 		JMenuItem newFileMenuItem = new JMenuItem("New");
 		newFileMenuItem.setIcon(new ImageIcon("icons/add_box_icon.png"));
 		newFileMenuItem.addActionListener(createActionListener);
-		newFileMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK));
+		newFileMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK));//keyboard shortcut
 		fileMenu.add(newFileMenuItem);
 		
 		JMenu openFileSubmenu = new JMenu("Open");
@@ -321,7 +334,7 @@ public class JMain implements Refreshable {
 		
 		
 		
-		
+		//Edit Menu
 		JMenu editMenu = new JMenu("Edit");
 		menuBar.add(editMenu);
 		
@@ -333,6 +346,7 @@ public class JMain implements Refreshable {
 		deleteEditMenuItem.addActionListener(deleteActionListener);
 		editMenu.add(deleteEditMenuItem);
 		
+		//Help Menu
 		JMenu helpMenu = new JMenu("Help");
 		menuBar.add(helpMenu);
 		
@@ -350,19 +364,18 @@ public class JMain implements Refreshable {
 	}
 	
 	@Override
+	//
 	public void refresh(JDialog dialog) {
 		modelCetkica = new CetkicaTable(CetkicaCrud.getAllCetkice());
-		tableCetkice.setModel(modelCetkica); 
-		tableCetkice.getColumnModel().getColumn(2).setCellRenderer(dCellRenderer);
+		tableCetkice.setModel(modelCetkica);
+		tableCetkice.getColumnModel().getColumn(2).setCellRenderer(dCellRenderer);//dCellRenderer
 		modelRenderi = new RenderiTable(RenderCrud.getAllRenderi());
 		tableRenderi.setModel(modelRenderi);
 		modelSoftveri = new SoftveriTable(SoftverCrud.getAllSoftveri());
 		tableSoftveri.setModel(modelSoftveri);
 		modelZaposleni = new ZaposleniTable(ZaposleniCrud.getAllZaposlenis());
 		tableZaposleni.setModel(modelZaposleni);
-
-		//Zatvaranje dijaloga u potpunosti, referenca: https://newbedev.com/button-for-closing-a-jdialog
-		dialog.setVisible(false);
+		dialog.setVisible(false); 
 		dialog.dispose();
 	}
 }

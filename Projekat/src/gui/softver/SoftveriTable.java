@@ -9,11 +9,13 @@ import model.Softver;
 
 public class SoftveriTable extends AbstractTableModel {
 
-	private static final long serialVersionUID = -7897789469491057501L;
-
 	private List<Softver> softveri;
 
 	public SoftveriTable(List<Softver> softveri) {
+		this.softveri = softveri;
+	}
+	
+	public void setSoftveri(List<Softver> softveri) {
 		this.softveri = softveri;
 	}
 

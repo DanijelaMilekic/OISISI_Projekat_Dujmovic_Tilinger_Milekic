@@ -46,9 +46,9 @@ public class Formating {
 		}
 		return null;
 	}
-	
+	//za proveravanje formata datuma
 	public static boolean checkFormat(String token) {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy.");
 		try {
 			sdf.parse(token);
 		} catch (ParseException e) {
@@ -56,7 +56,7 @@ public class Formating {
 		}
 		return true;
 	}
-	
+	//proveravamo da li je integer
 	public static boolean checkNumber(String token) {
 		try {
 			Integer.parseInt(token);

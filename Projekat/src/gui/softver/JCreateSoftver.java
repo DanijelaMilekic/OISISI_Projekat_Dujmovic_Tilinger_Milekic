@@ -30,7 +30,6 @@ import model.Render;
 
 public class JCreateSoftver extends JDialog {
 
-	private static final long serialVersionUID = -3941633504685531351L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfNaziv;
 	private JTextField tfFajlFormat;
@@ -99,7 +98,7 @@ public class JCreateSoftver extends JDialog {
 		{
 			listCetkice = new JList<>();
 			modelCetkice = new DefaultListModel<>();
-			modelCetkice.addAll(CetkicaCrud.getAllCetkice());
+			modelCetkice.addAll(CetkicaCrud.getAllCetkice()); 
 			listCetkice.setModel(modelCetkice);
 			listCetkice.setBounds(191, 64, 456, 136);
 			contentPanel.add(listCetkice);
@@ -164,6 +163,7 @@ public class JCreateSoftver extends JDialog {
 		{
 
 			cbRender = new JComboBox<>(RenderCrud.toArray(RenderCrud.getAllRenderi()));
+			//postavlja ih u combobox - moze da se izabere samo jedan
 //			cbRender = new JComboBox<>();
 			cbRender.setBounds(191, 417, 456, 24);
 			contentPanel.add(cbRender);

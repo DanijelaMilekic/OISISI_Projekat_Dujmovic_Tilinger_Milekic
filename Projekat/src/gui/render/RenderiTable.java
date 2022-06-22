@@ -6,7 +6,6 @@ import javax.swing.table.AbstractTableModel;
 
 import model.Render;
 
-//Table model: 
 public class RenderiTable extends AbstractTableModel {
 
 	private static final long serialVersionUID = -6188261928784240167L;
@@ -31,7 +30,6 @@ public class RenderiTable extends AbstractTableModel {
 	}
 
 	@Override
-	//getColumnName preuzeto sa linka: 
 	public String getColumnName(int column) {
 		switch (column) {
 		case 0: {
@@ -56,7 +54,6 @@ public class RenderiTable extends AbstractTableModel {
 	
 
 	@Override
-	//get ValueAt preuzeto sa linka: 
 	public String getValueAt(int rowIndex, int columnIndex) {
 		switch (columnIndex) {
 		case 0: {

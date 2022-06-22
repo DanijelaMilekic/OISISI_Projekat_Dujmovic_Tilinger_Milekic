@@ -25,7 +25,11 @@ import model.Adresa;
 import model.RadnoMesto;
 import model.Softver;
 import util.Formating;
-
+/*REFERENCE:
+ * ComboBox, kako ga napuniti vrednostima i uzeti selectovane vrednosti: https://www.geeksforgeeks.org/java-swing-jcombobox-examples/
+ * JList, kako jednostavno prebaciti Enumeratioin (koji dobijemo metodom getSelectedValues()) u Listu: https://stackoverflow.com/questions/5610822/convert-enumeration-to-a-set-list
+ * 
+ */
 public class JCreateZaposleni extends JDialog {
 
 	private static final long serialVersionUID = -6576572204556705752L;
@@ -44,9 +48,7 @@ public class JCreateZaposleni extends JDialog {
 	private JDialog thisDialog = this;
 
 	private JList<Softver> listSoftveri;
-	
- /* Rad sa JComboBox-om na osnovu sledeceg linka: https://www.geeksforgeeks.org/java-swing-jcombobox-examples/*/
-	
+
 	private JComboBox<RadnoMesto> cbRadnoMesto;
 
 	private boolean somethingEmpty = false;
@@ -70,7 +72,7 @@ public class JCreateZaposleni extends JDialog {
 	public JCreateZaposleni(Refreshable main) {
 		setTitle("Kreiranje novog zaposlenog");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(dimension.width * 1 / 4, dimension.height * 1 / 4, dimension.width * 1 / 2, dimension.height * 1 / 2);
+		setBounds(dimension.width * 1 / 8, dimension.height * 1 / 8, dimension.width * 2/ 3, dimension.height * 2 /3);
 
 		getContentPane().setLayout(new BorderLayout());
 		{

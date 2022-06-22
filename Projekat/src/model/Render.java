@@ -6,7 +6,7 @@ import java.util.List;
 import util.Formating;
 
 public class Render {
-	
+
 //	Id rendera
 	private final String naziv;
 
@@ -115,16 +115,17 @@ public class Render {
 	public String toString() {
 		return naziv;
 	} 
+	
 	public String toFileFormat() {
 		return naziv 
 				+ "," + Formating.formatList(materijali.toArray()) 
 				+ "," + Formating.formatList(kamere.toArray())
 				+ "," + svetlo 
 				+ "," + Formating.formatList(objekti.toArray());
-	} 
+	}
 	
 	public static Render parse(String line) {
-		String[] tokens = line.split(",");
+		String[] tokens = line.split(","); 
 		return new Render(
 				tokens[0], 
 				Formating.toList(tokens[1]), 

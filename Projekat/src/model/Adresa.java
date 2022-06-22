@@ -1,7 +1,7 @@
 package model;
 
 public class Adresa {
-	
+
 //	Nema id-a, uzimamo ga kao opisni objekat koji 
 //	cemo staviti odmah uz zaposlenog u fajlu
 	private int broj;
@@ -42,6 +42,10 @@ public class Adresa {
 
 	@Override
 	public String toString() {
+		return ulica + " " + broj + ", " + grad;
+	}
+	
+	public String toFileFormat() {
 		return broj + ";" + ulica + ";" + grad;
 	}
 	

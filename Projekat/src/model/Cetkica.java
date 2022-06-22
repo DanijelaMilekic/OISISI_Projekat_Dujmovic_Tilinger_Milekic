@@ -1,14 +1,15 @@
 package model;
 
-import java.awt.Color;
+import java.awt.Color; //zbog boje
 
 public class Cetkica {
 
+//	Id cetkice
 	private final String naziv;
 	
 	private String namena;
 	
-	private Color boja; 
+	private Color boja; //tipa java.awt.color
 
 	
 	

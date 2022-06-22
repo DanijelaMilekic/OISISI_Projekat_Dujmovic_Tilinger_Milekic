@@ -1,10 +1,9 @@
 package gui.cetkica;
-
+//Pravljenje cetkica gui
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,14 +16,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-
-
 import crud.CetkicaCrud;
 import gui.Refreshable;
-
+/* REFERENCE:
+ * ColorPicker: https://www.c-sharpcorner.com/UploadFile/433c33/working-with-color-chooser-in-swing/
+ * Bojenje celije tabele: https://github.com/stark9000/jTable_cell_color/tree/7a15c3e2c1cec1acb056e4c7836c767c38db785b
+ */
 public class JCreateCetkica extends JDialog {
 
-
+	private static final long serialVersionUID = 9040713049020031322L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfNaziv;
 	private JTextField tfNamena;
@@ -36,6 +36,7 @@ public class JCreateCetkica extends JDialog {
 	private boolean somethingEmpty = false;
 	private boolean notUnique = false;
 	private JTextField tfColor;
+
 
 	/**
 	 * Launch the application.
@@ -53,8 +54,6 @@ public class JCreateCetkica extends JDialog {
 		setTitle("Kreiranje nove cetkice");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds(dimension.width * 3 / 9, dimension.height * 3 / 9, dimension.width * 3 / 9, dimension.height * 3 / 9);
-//		setBounds(dimension.width * 4 / 9, dimension.height * 4 / 9, dimension.width * 4 / 9, dimension.height * 4 / 9);
-
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -119,7 +118,7 @@ public class JCreateCetkica extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout((LayoutManager) new FlowLayout(FlowLayout.RIGHT));
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
@@ -140,7 +139,7 @@ public class JCreateCetkica extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancel"); // za zatavranje
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						thisDialog.dispose();
@@ -157,5 +156,4 @@ public class JCreateCetkica extends JDialog {
 		somethingEmpty = tfNaziv.getText() == null || tfNaziv.getText().isBlank() || (notUnique = CetkicaCrud.getCetkicaByID(tfNaziv.getText()) != null) || tfNamena.getText() == null
 				|| tfNamena.getText().isBlank();
 	}
-
 }

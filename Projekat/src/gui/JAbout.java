@@ -34,7 +34,7 @@ public class JAbout extends JDialog {
 	public JAbout() {
 		setTitle("About us");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(dimension.width * 3 / 8, dimension.height * 3 / 8, dimension.width * 1 / 4, dimension.height * 1 / 4);
+		setBounds(dimension.width * 2 / 8, dimension.height * 2 / 8, dimension.width * 1 / 2, dimension.height * 1 / 2);
 		getContentPane().setLayout(new BorderLayout());
 
 		{
@@ -53,7 +53,7 @@ public class JAbout extends JDialog {
 			}
 		}
 		{
-			String text = "<html>Studenti Animacije u inzenjerstvu <br> Milekic Danijela <br> Dujmovic Lana <br> Tilinger Antonia<br>Hvala.";
+			String text = "<html> Studenti Animacije u inzenjerstvu<br> <br>  Ovaj projekat se ispostavio kao malo zahtevniji i izazovniji<br>  sto smo na nasu srecu, ili zalost,<br>  iskusili i na nasoj kozi.<br> Tokom rada smo nailazili na razne probleme, <br>koje smo koriscenjem nasih glavica i interneta resavale. <br>  Svaki problem koliki god bio problem, je i novo iskustvo, <br>  koje nas je sve vise priblizavalo veoma interesantnom svetu programiranja. <br>  Kada se sve sabere, nista nije moglo da nadmasi osecaj kad je sve proradilo kako treba. (I sad kad komitujemo) <br> Milekic Danijela AI15/2019<br> Dujmovic Lana AI16/2019<br> Tilinger Antonia AI43/2019<br>Hvala.";
 			JLabel lblAbout = new JLabel(text);
 			lblAbout.setHorizontalAlignment(SwingConstants.CENTER);
 			getContentPane().add(lblAbout, BorderLayout.CENTER);

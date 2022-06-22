@@ -23,7 +23,6 @@ import model.Cetkica;
 
 public class JEditCetkica extends JDialog {
 
-	private static final long serialVersionUID = -7224389510539177690L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfNamena;
 	private JDialog thisDialog = this;
@@ -49,7 +48,7 @@ public class JEditCetkica extends JDialog {
 		selectedColor = cetkica.getBoja();
 		setTitle("Izmena podataka cetkice");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(dimension.width * 3 / 9, dimension.height * 3 / 9, dimension.width * 3 / 9, dimension.height * 3 / 9);
+		setBounds(dimension.width * 3 / 8, dimension.height * 3 / 8, dimension.width * 1 / 4, dimension.height * 1 / 4);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -135,3 +134,4 @@ public class JEditCetkica extends JDialog {
 		somethingEmpty = tfNamena.getText() == null || tfNamena.getText().isBlank();
 	}
 }
+

@@ -26,7 +26,7 @@ import model.Render;
 
 public class JEditRender extends JDialog {
 
-	private static final long serialVersionUID = -4975791820967261865L;
+
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfMaterijali;
 	private JTextField tfKamere;
@@ -66,7 +66,7 @@ public class JEditRender extends JDialog {
 	public JEditRender(Render render, Refreshable main) {
 		setTitle("Izmena podataka rendera");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(dimension.width * 1/4, dimension.height * 1/4, dimension.width * 1/2, dimension.height * 1/2);
+		setBounds(dimension.width * 1 / 8, dimension.height * 1 / 8, dimension.width * 2/ 3, dimension.height * 2 /3);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -98,7 +98,7 @@ public class JEditRender extends JDialog {
 			listMaterijali = new JList<>();
 			modelMaterijali = new DefaultListModel<>();
 			modelMaterijali.addAll(render.getMaterijali());
-			listMaterijali.setModel(modelMaterijali);
+			listMaterijali.setModel(modelMaterijali); //u materijale dodajemo sve one koji postoje u renderu
 			listMaterijali.setBounds(142, 94, 633, 81);
 			listMaterijali.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			contentPanel.add(listMaterijali);

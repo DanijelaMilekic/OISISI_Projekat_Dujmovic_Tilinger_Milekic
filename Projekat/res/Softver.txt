@@ -1,5 +1,3 @@
-Softver2,cetkica3;Cetkica1,fajlFormat2,alat3;alat4;alat5,Render2
-Softver1,Cetkica1,fajlFormat1,alat1;alat2;alat3,Render1
-Softver3,Cetkica1,format3,alat0;alat3,Render1
-sof4,Cetkica1,form4,alat4,Render1
-aaa,Cetkica1,aaa,aa,Render2
+Blender,Proba;Pull;Move;Flatten;Smooth,.obj,Cetkica;Keyframes;Extrude;Inset;Select,VRay
+ZBrush,Proba;Move;Flatten;Smooth,.zbr,cetkica,Arnold
+3dsMax,Move;Flatten;Smooth,.max,Extrude;Shell;Edit;,Arnold

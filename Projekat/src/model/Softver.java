@@ -8,15 +8,14 @@ import crud.RenderCrud;
 import util.Formating;
 
 public class Softver {
-	
-//	Id softvera
-	private final String naziv;
+
+	private final String naziv; //iD
 	
 	private List<Cetkica> cetkice;
 	
 	private String fajlFormat;
 	
-	private List<String> alatiZaAnimaciju;
+	private List<String> alatiZaAnimaciju; 
 	
 	private Render render;
 	
@@ -111,12 +110,12 @@ public class Softver {
 		return naziv;
 	}
 	
-	public String toFileFormat()  {
+	public String toFileFormat() {
 		return naziv 
 				+ "," + Formating.formatList(cetkiceToNaziv().toArray()) 
 				+ "," + fajlFormat 
 				+ "," + Formating.formatList(alatiZaAnimaciju.toArray()) 
-				+ "," + render.getNaziv();
+				+ "," + render.getNaziv(); 
 	}
 	
 	public static Softver parse(String line) {
@@ -129,5 +128,7 @@ public class Softver {
 				RenderCrud.getRenderByID(tokens[4]));
 	}
 	
-
+	
+	
+	
 }

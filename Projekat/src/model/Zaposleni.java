@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -7,10 +8,11 @@ import crud.SoftverCrud;
 import util.Formating;
 
 public class Zaposleni {
-	
+
 	
 //	Id Zaposlenog
-	private final String JMBG;
+	//sadrzi nekoliko polja
+	private final String JMBG; 
 	
 	private String ime;
 	
@@ -22,7 +24,7 @@ public class Zaposleni {
 	
 	private Adresa adresaStanovanja;
 	
-	private List<Softver> softveri;
+	private List<Softver> softveri; 
 	
 	private RadnoMesto radnoMesto;
 
@@ -91,7 +93,7 @@ public class Zaposleni {
 	public void setSoftveri(List<Softver> softveri) {
 		this.softveri = softveri;
 	}
-	
+
 	public void addSoftver(Softver softver) {
 		if (!softveri.contains(softver)) {
 			softveri.add(softver);
@@ -112,8 +114,17 @@ public class Zaposleni {
 		this.radnoMesto = radnoMesto;
 	}
 
+
 	public String getJMBG() {
 		return JMBG;
+	}
+	
+	private List<String> softveriToNaziv() {
+		List<String> lista = new ArrayList<String>();
+		for (Softver softver: softveri) {
+			lista.add(softver.getNaziv());	
+		}
+		return lista;
 	}
 
 	
@@ -129,11 +140,11 @@ public class Zaposleni {
 		return JMBG 
 				+ "," + ime 
 				+ "," + prezime 
-				+ "," + Formating.formatDate(datumRodjenja) 
+				+ "," + Formating.formatDate(datumRodjenja) //tipa date, a ne string, tako da treba da se formatira 
 				+ "," + email 
-				+ "," + adresaStanovanja 
-				+ "," + softveri 
-				+ "," + radnoMesto.toString();
+				+ "," + adresaStanovanja.toFileFormat()
+				+ "," + Formating.formatList(softveriToNaziv().toArray())//samo nazive softvera
+				+ "," + radnoMesto.toString(); // vraca string - naziv  iz enuma
 	}
 	 
 	 
@@ -146,12 +157,11 @@ public class Zaposleni {
 				tokens[0], 
 				tokens[1], 
 				tokens[2], 
-				Formating.parseDate(tokens[3]), 
+				Formating.parseDate(tokens[3]), //uzima string i prebacuje u datum
 				tokens[4],
-				Adresa.parse(tokens[5]),
+				Adresa.parse(tokens[5]), 
 				SoftverCrud.getSoftveriByIDs(Formating.toList(tokens[6])), 
-				RadnoMesto.valueOf(tokens[7])); 
+				RadnoMesto.valueOf(tokens[7])); //ucitavamo koji je enum valueof..
 		
 	}
-
 }

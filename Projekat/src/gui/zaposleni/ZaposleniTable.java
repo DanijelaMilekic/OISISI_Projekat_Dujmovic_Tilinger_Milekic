@@ -7,9 +7,9 @@ import javax.swing.table.AbstractTableModel;
 import model.Softver;
 import model.Zaposleni;
 import util.Formating;
-
-/*Rad sa tabelama: https://docs.oracle.com/javase/7/docs/api/javax/swing/table/DefaultTableModel.html*/
-
+/*REFERENCE:
+ * JTable, i sve sto ide uz to: DefaultTableModel (Java Platform SE 7 ) AbstractTableModel (Java Platform SE 7 ) TableModel (Java Platform SE 7 ) 
+ */
 public class ZaposleniTable extends AbstractTableModel {
 
 	private static final long serialVersionUID = -7897789469491057501L;

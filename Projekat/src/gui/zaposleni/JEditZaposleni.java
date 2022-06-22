@@ -43,9 +43,7 @@ public class JEditZaposleni extends JDialog {
 	private JDialog thisDialog = this;
 	
 	private JList<Softver> listSoftveri;
-	
- /* ComboBox : https://www.geeksforgeeks.org/java-swing-jcombobox-examples*/
-	
+
 	private JComboBox<RadnoMesto> cbRadnoMesto;
 
 	private boolean somethingEmpty = false;
@@ -70,7 +68,7 @@ public class JEditZaposleni extends JDialog {
 	public JEditZaposleni(Zaposleni zaposleni, Refreshable main) {
 		setTitle("Izmena podataka zaposlenog");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(dimension.width * 1/4, dimension.height * 1/4, dimension.width * 1/2, dimension.height * 1/2);
+		setBounds(dimension.width * 1 / 8, dimension.height * 1 / 8, dimension.width * 2/ 3, dimension.height * 2 /3);
 		getContentPane().setLayout(new BorderLayout());
 		{
 			JPanel buttonPane = new JPanel();

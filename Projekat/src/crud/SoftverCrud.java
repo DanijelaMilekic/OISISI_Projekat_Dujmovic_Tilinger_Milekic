@@ -1,4 +1,5 @@
 package crud;
+//ideja CRUD-a je da Create, Read, Update, Delete-uje, sve ili neke odredjene delove
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import util.Files;
 public class SoftverCrud {
 
 	private static Map<String, Softver> softveri;
-
+//uczitavnje iz fajla
 	public static void loadSoftveriMap() {
 		softveri = new HashMap<>();
 
@@ -61,7 +62,7 @@ public class SoftverCrud {
 	public static Softver getSoftverByID(String naziv) {
 		return softveri.get(naziv);
 	}
-
+//kreiranje softvera
 	public static boolean createSoftver(String naziv, List<Cetkica> cetkice, String fajlFormat,
 			List<String> alatiZaAnimaciju, Render render) {
 		if (softveri.containsKey(naziv))
@@ -69,19 +70,19 @@ public class SoftverCrud {
 
 		softveri.put(naziv, new Softver(naziv, cetkice, fajlFormat, alatiZaAnimaciju, render));
 
-		FileIO.appendToFile(Files.SOFTVER, softveri.get(naziv).toString());
+		FileIO.appendToFile(Files.SOFTVER, softveri.get(naziv).toFileFormat());
 
 		return true;
 	}
-
+// udate file SOFTVER
 	private static boolean updateFile() {
 		List<String> list = new ArrayList<>();
 		for (Softver softver : softveri.values()) {
-			list.add(softver.toString());
+			list.add(softver.toFileFormat());
 		}
 		return FileIO.writeToFile(Files.SOFTVER, list);
 	}
-
+//editovanje softvera
 	public static boolean updateSoftver(Softver softver) {
 		if (!softveri.containsKey(softver.getNaziv()))
 			return false;
@@ -92,7 +93,7 @@ public class SoftverCrud {
 
 		return true;
 	}
-
+//brisanje softvera
 	public static boolean deleteSoftver(Softver softver) {
 		if (!softveri.containsKey(softver.getNaziv()))
 			return false;
@@ -105,18 +106,19 @@ public class SoftverCrud {
 
 		return true;
 	}
-
-	public static void removeRender(Render render) {
-		for (Map.Entry<String, Softver> entry : softveri.entrySet()) {
+//UKoliko je samo jedan render obrisan, a u softveru ima vise taj softver s ene brise
+//Ukoliko je obrisan poslenji render iz mape softveri brise softver
+	public static void removeRender(Render render) { 
+		for (Map.Entry<String, Softver> entry : softveri.entrySet()) { //entrySet - > nacin da prolazimo kroz mapu
 			if (entry.getValue().getRender().getNaziv().equals(render.getNaziv())) {
 				deleteSoftver(entry.getValue());
-				break;
 			}
 		}
 
 	}
-	
+//analogno za cetkice	
 	public static void removeCetkica(Cetkica cetkica) {
+
 		for (Map.Entry<String, Softver> entry : softveri.entrySet()) {
 			entry.getValue().removeCetkica(cetkica); 
 			if (entry.getValue().getCetkice().size() == 0) {
@@ -125,6 +127,6 @@ public class SoftverCrud {
 		}
 		
 		updateFile();
-		
 	}
+
 }

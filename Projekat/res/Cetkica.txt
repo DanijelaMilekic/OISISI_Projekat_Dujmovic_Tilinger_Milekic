@@ -1,3 +1,9 @@
-cetkica3,namena3,-3381505
-boja3,3,-14336
-Cetkica1,Namena1,-12260686
+Red,crvena boja,-65536
+Pull,za izvlacenje,-10066330
+Move,za pomeranje,-3355444
+Blue,plava boja,-13395457
+Flatten,za ravnanje,-16777216
+Smooth,za ublazavanje ,-13421773
+Standard,standardna ,-10066330
+Green,zelena boja,-10027264
+Proba,pa da probamo,-14336

@@ -1,5 +1,2 @@
-Render1,VRayMaterial,VRayPhysicalCamera,VRaySun; VRayLight,3DModel
-Render2,Arnold Material,Cylindrical Camera, Fisheye Camera ;Orthographic Camera;Perspective Camera; VR Camera,Arnold Light; Area lights; Sky Dome light; Mesh light,3DModel
-Render3,Corona Material, Wood; Light; Glass; Fabric,Corona Camera,Corona Lights and Corona Light Material,3DModelfrgwrg
-Vray, Materijal, Kamera, Sunce, Model
-Arnold, boga pitaj koji materijal;jos neki, neka kamera, boyja svetlost, neki modelnesto
+VRay,VrayMtl;VrayBump;VrayNormal,VrayPhysical;VrayTarget,VraySun,Box;Plane;Sphere
+Arnold,ArnoldBump;ArnoldDisplace;ArnoldMatherial,Front;Top;ArnoldTarget,Ambiental Light,Teapot;Ring;Cyllinder

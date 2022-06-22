@@ -1,5 +1,5 @@
 package gui.cetkica;
-
+//Tabela za cetkice
 import java.awt.Color;
 import java.util.List;
 
@@ -10,7 +10,7 @@ import model.Cetkica;
 public class CetkicaTable extends AbstractTableModel {
 
 	
-	private static final long serialVersionUID = -7870870896455561500L;
+
 	
 	private List<Cetkica> cetkice;
 
@@ -21,17 +21,17 @@ public class CetkicaTable extends AbstractTableModel {
 	public void setCetkice(List<Cetkica> cetkice) {
 		this.cetkice = cetkice;
 	}
-
+//redovi
 	@Override
 	public int getRowCount() {
 		return cetkice.size();
 	}
-
+//colone
 	@Override
 	public int getColumnCount() {
 		return 3;
 	}
-
+// .. 
 	@Override
 	public String getColumnName(int column) {
 		switch (column) {
@@ -48,8 +48,7 @@ public class CetkicaTable extends AbstractTableModel {
 		return null;
 	}
 	
-	
-
+//za prikazivanje vrednosti
 	@Override
 	public String getValueAt(int rowIndex, int columnIndex) {
 		switch (columnIndex) {
@@ -69,11 +68,10 @@ public class CetkicaTable extends AbstractTableModel {
 	public Cetkica getRowValue(int i) {
 		return cetkice.get(i);
 	}
-	
-	public Color getColor(int i) { 
+
+//	za boju
+	public Color getColor(int i) { // dodatno za prikaz obojenog polja
 		return cetkice.get(i).getBoja();
 	}
 	
 }
-
-

@@ -25,7 +25,7 @@ import gui.Refreshable;
 
 public class JCreateRender extends JDialog {
 
-	private static final long serialVersionUID = 852908432495449070L;
+
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfNaziv;
 	private JTextField tfMaterijali;
@@ -63,7 +63,7 @@ public class JCreateRender extends JDialog {
 	public JCreateRender(Refreshable main) {
 		setTitle("Kreiranje novog rendera");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(dimension.width * 1 / 4, dimension.height * 1 / 4, dimension.width * 1 / 2, dimension.height * 1 / 2);
+		setBounds(dimension.width * 1 / 8, dimension.height * 1 / 8, dimension.width * 2/ 3, dimension.height * 2 /3);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -114,14 +114,14 @@ public class JCreateRender extends JDialog {
 			modelMaterijali = new DefaultListModel<>();
 			listMaterijali.setModel(modelMaterijali);
 			listMaterijali.setBounds(142, 122, 509, 72);
-			listMaterijali.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			listMaterijali.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
 			contentPanel.add(listMaterijali);
 		}
 		{
 			JButton btnRemoveMaterijal = new JButton("Ukloni materijal");
 			btnRemoveMaterijal.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					modelMaterijali.removeElement(listMaterijali.getSelectedValue());
+					modelMaterijali.removeElement(listMaterijali.getSelectedValue()); 
 				}
 			});
 			btnRemoveMaterijal.setBounds(659, 122, 145, 25);
@@ -239,13 +239,13 @@ public class JCreateRender extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						validateInput();
-						if (!somethingEmpty) {
+						if (!somethingEmpty) {							//enumerate pretvara u listu
 							RenderCrud.createRender(tfNaziv.getText(), Collections.list(modelMaterijali.elements()),
 									Collections.list(modelKamere.elements()), tfSvetlo.getText(),
-									Collections.list(modelObjekti.elements()));
+									Collections.list(modelObjekti.elements())); 
 							main.refresh(thisDialog);
 						} else {
-							lblError.setVisible(somethingEmpty && !notUnique);
+							lblError.setVisible(somethingEmpty && !notUnique); 
 							lblErrorNaziv.setVisible(notUnique);
 						}
 

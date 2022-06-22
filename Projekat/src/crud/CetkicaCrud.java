@@ -1,4 +1,5 @@
 package crud;
+//ideja CRUD-a je da Create, Read, Update, Delete-uje, sve ili neke odredjene delove
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -14,14 +15,14 @@ import util.Files;
 public class CetkicaCrud {
 	
 	private static Map<String, Cetkica> cetkice; 
-	public static void loadCetkiceMap() {
+	public static void loadCetkiceMap() { //kod hashmap mozemo da identifikujemo objekat odma na osnovu kljuca
 		cetkice = new HashMap<>();
 
 		List<String> lines = FileIO.readFromFile(Files.CETKICA);
 
 		for (String line : lines) {
 			Cetkica cetkica = Cetkica.parse(line);
-			cetkice.put(cetkica.getNaziv(), cetkica); 
+			cetkice.put(cetkica.getNaziv(), cetkica); //Naziv ID, a cetkica je vrednost
 		}
 	}
 
@@ -29,7 +30,7 @@ public class CetkicaCrud {
 		return cetkice;
 	}
 	
-	public static List<Cetkica> getAllCetkice() { 
+	public static List<Cetkica> getAllCetkice() {
 		return new ArrayList<Cetkica>(cetkice.values());
 	}
 	
@@ -43,19 +44,19 @@ public class CetkicaCrud {
 		return list;
 	}
 	
-	public static Cetkica getCetkicaByID(String naziv) { 
+	public static Cetkica getCetkicaByID(String naziv) {
 		return cetkice.get(naziv);
 	}
-		
+	//kada se edituje nesto, ucita se cela lista cetkica, i ovo nam sluzi da odredimo koje su slektovane, na osnovu indeksa
 	public static int[] indices(List<Cetkica> list) {
-		int[] indices = new int[list.size()]; 
+		int[] indices = new int[list.size()]; //niz indeksa int
 		List<Cetkica> cetkice = getAllCetkice();
 		for (int i = 0; i < indices.length; i++) {
 			indices[i] = cetkice.indexOf(list.get(i));
 		}
 		return indices;
 	}
-	
+// Create - pravljenje cetkice
 	public static boolean createCetkica(String naziv, String namena, Color boja) { 
 		if (cetkice.containsKey(naziv)) return false;
 		
@@ -65,7 +66,7 @@ public class CetkicaCrud {
 		
 		return true;
 	}
-	
+//Update-ovanje fajla	
 	private static boolean updateFile() {
 		List<String> list = new ArrayList<>();
 		for (Cetkica cetkica : cetkice.values()) {
@@ -74,16 +75,17 @@ public class CetkicaCrud {
 		return FileIO.writeToFile(Files.CETKICA, list);
 
 	}
-	
+// Editovanje 
 	public static boolean updateCetkica(Cetkica cetkica) {
 		if (!cetkice.containsKey(cetkica.getNaziv())) return false; 
 		
-		cetkice.replace(cetkica.getNaziv(), cetkica); 	
+		cetkice.replace(cetkica.getNaziv(), cetkica); 
+		
 		updateFile();
 		
 		return true;
 	}
-	
+// brisanje
 	public static boolean deleteCetkica(Cetkica cetkica) {
 		if (!cetkice.containsKey(cetkica.getNaziv())) return false;
 		
