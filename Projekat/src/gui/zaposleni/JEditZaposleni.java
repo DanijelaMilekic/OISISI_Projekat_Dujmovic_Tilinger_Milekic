@@ -43,7 +43,9 @@ public class JEditZaposleni extends JDialog {
 	private JDialog thisDialog = this;
 	
 	private JList<Softver> listSoftveri;
-
+	
+ /* ComboBox : https://www.geeksforgeeks.org/java-swing-jcombobox-examples*/
+	
 	private JComboBox<RadnoMesto> cbRadnoMesto;
 
 	private boolean somethingEmpty = false;

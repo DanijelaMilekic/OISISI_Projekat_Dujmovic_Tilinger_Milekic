@@ -8,6 +8,8 @@ import model.Softver;
 import model.Zaposleni;
 import util.Formating;
 
+/*Rad sa tabelama: https://docs.oracle.com/javase/7/docs/api/javax/swing/table/DefaultTableModel.html*/
+
 public class ZaposleniTable extends AbstractTableModel {
 
 	private static final long serialVersionUID = -7897789469491057501L;

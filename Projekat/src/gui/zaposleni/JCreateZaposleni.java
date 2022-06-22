@@ -44,7 +44,9 @@ public class JCreateZaposleni extends JDialog {
 	private JDialog thisDialog = this;
 
 	private JList<Softver> listSoftveri;
-
+	
+ /* Rad sa JComboBox-om na osnovu sledeceg linka: https://www.geeksforgeeks.org/java-swing-jcombobox-examples/*/
+	
 	private JComboBox<RadnoMesto> cbRadnoMesto;
 
 	private boolean somethingEmpty = false;
